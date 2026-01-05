@@ -68,13 +68,33 @@
             
             <!-- Combined Column (The Main Results) -->
             <div class="xl:col-span-3 flex flex-col bg-zinc-900/30 rounded-[3rem] overflow-hidden border border-zinc-800/50 glow-indigo min-h-[700px]">
-                <div class="px-10 py-8 bg-zinc-900/50 border-b border-zinc-800/80 flex justify-between items-center">
-                    <div class="flex items-center gap-4">
-                        <div class="h-3 w-3 rounded-full bg-indigo-500 status-pulse"></div>
-                        <h2 class="font-black text-2xl tracking-tighter uppercase italic text-white">Target Results</h2>
-                    </div>
-                    <div class="flex items-center gap-4">
+                <div class="px-10 py-8 bg-zinc-900/50 border-b border-zinc-800/80 flex flex-col gap-4">
+                    <div class="flex justify-between items-center w-full">
+                        <div class="flex items-center gap-4">
+                            <div class="h-3 w-3 rounded-full bg-indigo-500 status-pulse"></div>
+                            <h2 class="font-black text-2xl tracking-tighter uppercase italic text-white">Target Results</h2>
+                        </div>
                         <span id="total-target" class="bg-indigo-600 text-white px-6 py-2 rounded-full text-xs font-black border border-indigo-400/30 shadow-lg shadow-indigo-600/20 tracking-widest">0 ACCOUNTS</span>
+                    </div>
+                    
+                    <!-- ID Counts Bar (Kon tay koto) -->
+                    <div id="stats-bar" class="flex flex-wrap gap-3">
+                        <div class="bg-zinc-800/50 px-3 py-1 rounded-lg border border-zinc-700/50 flex gap-2 items-center">
+                            <span class="text-[9px] font-bold text-zinc-500 uppercase">100:</span>
+                            <span id="stat-100" class="text-xs font-black text-indigo-400">0</span>
+                        </div>
+                        <div class="bg-zinc-800/50 px-3 py-1 rounded-lg border border-zinc-700/50 flex gap-2 items-center">
+                            <span class="text-[9px] font-bold text-zinc-500 uppercase">6155:</span>
+                            <span id="stat-6155" class="text-xs font-black text-yellow-400">0</span>
+                        </div>
+                        <div class="bg-zinc-800/50 px-3 py-1 rounded-lg border border-zinc-700/50 flex gap-2 items-center">
+                            <span class="text-[9px] font-bold text-zinc-500 uppercase">6156:</span>
+                            <span id="stat-6156" class="text-xs font-black text-emerald-400">0</span>
+                        </div>
+                        <div class="bg-zinc-800/50 px-3 py-1 rounded-lg border border-zinc-700/50 flex gap-2 items-center">
+                            <span class="text-[9px] font-bold text-zinc-500 uppercase">6157:</span>
+                            <span id="stat-6157" class="text-xs font-black text-blue-400">0</span>
+                        </div>
                     </div>
                 </div>
 
@@ -95,7 +115,7 @@
                     </div>
                     <span id="count-others" class="bg-zinc-800 px-3 py-1 rounded-lg text-[10px] font-bold text-zinc-400">0</span>
                 </div>
-                <div id="list-others" class="flex-1 overflow-y-auto p-6 mono text-[10px] leading-relaxed text-zinc-700 scrollbar-hide italic">
+                <div id="list-others" class="flex-1 overflow-y-auto p-6 mono text-[10px] leading-relaxed text-zinc-500 scrollbar-hide italic">
                     <div class="h-full flex items-center justify-center opacity-10 uppercase font-black tracking-widest">Empty</div>
                 </div>
                 <button onclick="copyGroup('others')" id="btn-others" class="w-full py-8 flex items-center justify-center gap-3 font-black text-[10px] uppercase tracking-[0.3em] bg-zinc-900 hover:bg-zinc-800 text-zinc-600 hover:text-zinc-300 transition-all border-t border-zinc-800">
@@ -106,13 +126,14 @@
         </div>
 
         <footer class="mt-20 text-center border-t border-zinc-900/50 pt-10 pb-16">
-            <p class="text-zinc-800 text-[10px] font-black uppercase tracking-[0.6em]">Professional Data Scraper Interface • v3.0 Final</p>
+            <p class="text-zinc-800 text-[10px] font-black uppercase tracking-[0.6em]">Professional Data Scraper Interface • v3.1 Enhanced</p>
         </footer>
     </div>
 
     <script>
         let combinedList = [];
         let othersList = [];
+        let stats = { '100': 0, '6155': 0, '6156': 0, '6157': 0 };
 
         function processData() {
             const input = document.getElementById('mainInput').value;
@@ -120,14 +141,24 @@
             
             combinedList = [];
             othersList = [];
+            stats = { '100': 0, '6155': 0, '6156': 0, '6157': 0 };
 
             lines.forEach(line => {
                 const trimmed = line.trim();
                 if (!trimmed) return;
 
-                // Checking for 100, 6155, 6156, 6157
-                if (trimmed.startsWith('100') || trimmed.startsWith('6155') || trimmed.startsWith('6156') || trimmed.startsWith('6157')) {
+                if (trimmed.startsWith('100')) {
                     combinedList.push(trimmed);
+                    stats['100']++;
+                } else if (trimmed.startsWith('6155')) {
+                    combinedList.push(trimmed);
+                    stats['6155']++;
+                } else if (trimmed.startsWith('6156')) {
+                    combinedList.push(trimmed);
+                    stats['6156']++;
+                } else if (trimmed.startsWith('6157')) {
+                    combinedList.push(trimmed);
+                    stats['6157']++;
                 } else {
                     othersList.push(trimmed);
                 }
@@ -137,13 +168,19 @@
         }
 
         function updateUI() {
+            // Update Stats Display
+            document.getElementById('stat-100').innerText = stats['100'];
+            document.getElementById('stat-6155').innerText = stats['6155'];
+            document.getElementById('stat-6156').innerText = stats['6156'];
+            document.getElementById('stat-6157').innerText = stats['6157'];
+
             // Update Sidebar (Others)
             const listOthers = document.getElementById('list-others');
             const countOthers = document.getElementById('count-others');
             countOthers.innerText = othersList.length;
             
             if (othersList.length > 0) {
-                listOthers.innerHTML = othersList.map(item => `<div class="mb-1 truncate hover:text-zinc-500 transition-colors cursor-default">${item}</div>`).join('');
+                listOthers.innerHTML = othersList.map(item => `<div class="mb-1 truncate hover:text-zinc-300 transition-colors cursor-default">${item}</div>`).join('');
             } else {
                 listOthers.innerHTML = '<div class="h-full flex items-center justify-center opacity-10 uppercase font-black tracking-widest">Empty</div>';
             }
@@ -158,7 +195,6 @@
                 return;
             }
 
-            // Chunk Split Logic (1000 items per part)
             const chunkSize = 1000;
             let chunksHtml = '';
 
@@ -180,8 +216,8 @@
                                 Copy This Part
                             </button>
                         </div>
-                        <div class="h-40 overflow-y-auto bg-black/60 rounded-2xl p-5 mono text-[11px] text-zinc-600 border border-zinc-900 scrollbar-hide leading-relaxed">
-                            ${chunk.map(line => `<div class="truncate opacity-40 hover:opacity-100 transition-opacity">${line}</div>`).join('')}
+                        <div class="h-44 overflow-y-auto bg-black/60 rounded-2xl p-5 mono text-[11px] text-zinc-200 border border-zinc-900 scrollbar-hide leading-relaxed">
+                            ${chunk.map(line => `<div class="truncate opacity-80 hover:opacity-100 transition-opacity mb-1 border-b border-zinc-800/30 pb-1">${line}</div>`).join('')}
                         </div>
                     </div>
                 `;
