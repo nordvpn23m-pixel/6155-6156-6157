@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast ID Separator | Multi-Series</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #09090b;
+        }
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .card-glow {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border: 1px solid #27272a;
+        }
+        .status-dot {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+    </style>
+</head>
+<body class="text-zinc-100 min-h-screen p-4 md:p-8">
+
+    <div class="max-w-[1600px] mx-auto">
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 border-b border-zinc-800 pb-8">
+            <div class="flex items-center gap-4">
+                <div class="bg-yellow-500 p-3 rounded-2xl text-black shadow-lg shadow-yellow-500/20">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <div>
+                    <h1 class="text-3xl font-black tracking-tighter uppercase italic leading-none">Fast-ID Separator</h1>
+                    <p class="text-[10px] font-bold text-zinc-500 tracking-[0.3em] mt-1 uppercase">Instant Filtration Engine (All-in-One)</p>
+                </div>
+            </div>
+            
+            <button onclick="clearAll()" class="flex items-center gap-2 px-5 py-2.5 bg-zinc-900 hover:bg-red-950 text-zinc-400 hover:text-red-400 rounded-xl transition-all border border-zinc-800 font-bold text-xs uppercase tracking-widest">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+                Clear All
+            </button>
+        </header>
+
+        <!-- Input Area -->
+        <div class="relative mb-10 group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-3xl blur opacity-25 group-focus-within:opacity-100 transition duration-500"></div>
+            <textarea 
+                id="mainInput"
+                class="relative w-full h-44 bg-zinc-900/90 border border-zinc-800 rounded-2xl p-6 text-sm mono focus:ring-1 focus:ring-yellow-500 outline-none transition-all placeholder:text-zinc-700 resize-none"
+                placeholder="Paste your data here... 6155, 6156, 6157 bad-e onno gulo 'Others' e jabe."
+                oninput="processData()"
+            ></textarea>
+        </div>
+
+        <!-- Columns Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- 6155 Column -->
+            <div class="flex flex-col bg-zinc-900/50 rounded-[2rem] overflow-hidden card-glow h-[550px]">
+                <div class="px-6 py-5 bg-zinc-800/30 border-b border-zinc-800 flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <span class="h-2.5 w-2.5 rounded-full bg-yellow-500 status-dot"></span>
+                        <span class="font-black text-xl tracking-tighter uppercase italic">ID 6155</span>
+                    </div>
+                    <span id="count-6155" class="bg-black px-3 py-1 rounded-full text-xs font-bold text-yellow-500 border border-zinc-800">0</span>
+                </div>
+                <div id="list-6155" class="flex-1 overflow-y-auto p-5 mono text-[11px] leading-relaxed text-zinc-500 scrollbar-hide">
+                    <div class="h-full flex items-center justify-center opacity-10 uppercase text-[10px] font-bold">No Data</div>
+                </div>
+                <button onclick="copyGroup('6155')" id="btn-6155" class="w-full py-5 flex items-center justify-center gap-3 font-black text-xs uppercase tracking-[0.2em] bg-zinc-800 hover:bg-yellow-500 hover:text-black text-zinc-400 transition-all border-t border-zinc-800">
+                    Copy 6155
+                </button>
+            </div>
+
+            <!-- 6156 Column -->
+            <div class="flex flex-col bg-zinc-900/50 rounded-[2rem] overflow-hidden card-glow h-[550px]">
+                <div class="px-6 py-5 bg-zinc-800/30 border-b border-zinc-800 flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <span class="h-2.5 w-2.5 rounded-full bg-emerald-500 status-dot"></span>
+                        <span class="font-black text-xl tracking-tighter uppercase italic">ID 6156</span>
+                    </div>
+                    <span id="count-6156" class="bg-black px-3 py-1 rounded-full text-xs font-bold text-emerald-500 border border-zinc-800">0</span>
+                </div>
+                <div id="list-6156" class="flex-1 overflow-y-auto p-5 mono text-[11px] leading-relaxed text-zinc-500 scrollbar-hide">
+                    <div class="h-full flex items-center justify-center opacity-10 uppercase text-[10px] font-bold">No Data</div>
+                </div>
+                <button onclick="copyGroup('6156')" id="btn-6156" class="w-full py-5 flex items-center justify-center gap-3 font-black text-xs uppercase tracking-[0.2em] bg-zinc-800 hover:bg-emerald-500 hover:text-black text-zinc-400 transition-all border-t border-zinc-800">
+                    Copy 6156
+                </button>
+            </div>
+
+            <!-- 6157 Column -->
+            <div class="flex flex-col bg-zinc-900/50 rounded-[2rem] overflow-hidden card-glow h-[550px]">
+                <div class="px-6 py-5 bg-zinc-800/30 border-b border-zinc-800 flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <span class="h-2.5 w-2.5 rounded-full bg-blue-500 status-dot"></span>
+                        <span class="font-black text-xl tracking-tighter uppercase italic">ID 6157</span>
+                    </div>
+                    <span id="count-6157" class="bg-black px-3 py-1 rounded-full text-xs font-bold text-blue-500 border border-zinc-800">0</span>
+                </div>
+                <div id="list-6157" class="flex-1 overflow-y-auto p-5 mono text-[11px] leading-relaxed text-zinc-500 scrollbar-hide">
+                    <div class="h-full flex items-center justify-center opacity-10 uppercase text-[10px] font-bold">No Data</div>
+                </div>
+                <button onclick="copyGroup('6157')" id="btn-6157" class="w-full py-5 flex items-center justify-center gap-3 font-black text-xs uppercase tracking-[0.2em] bg-zinc-800 hover:bg-blue-500 hover:text-black text-zinc-400 transition-all border-t border-zinc-800">
+                    Copy 6157
+                </button>
+            </div>
+
+            <!-- Others Column -->
+            <div class="flex flex-col bg-zinc-900/50 rounded-[2rem] overflow-hidden card-glow h-[550px]">
+                <div class="px-6 py-5 bg-zinc-800/30 border-b border-zinc-800 flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <span class="h-2.5 w-2.5 rounded-full bg-zinc-500 status-dot"></span>
+                        <span class="font-black text-xl tracking-tighter uppercase italic text-zinc-400">Others</span>
+                    </div>
+                    <span id="count-Others" class="bg-black px-3 py-1 rounded-full text-xs font-bold text-zinc-400 border border-zinc-800">0</span>
+                </div>
+                <div id="list-Others" class="flex-1 overflow-y-auto p-5 mono text-[11px] leading-relaxed text-zinc-400 scrollbar-hide">
+                    <div class="h-full flex items-center justify-center opacity-10 uppercase text-[10px] font-bold">No Data</div>
+                </div>
+                <button onclick="copyGroup('Others')" id="btn-Others" class="w-full py-5 flex items-center justify-center gap-3 font-black text-xs uppercase tracking-[0.2em] bg-zinc-800 hover:bg-white hover:text-black text-zinc-500 transition-all border-t border-zinc-800">
+                    Copy Others
+                </button>
+            </div>
+        </div>
+
+        <footer class="mt-16 text-center border-t border-zinc-900 pt-8 pb-12">
+            <p class="text-zinc-800 text-[10px] font-black uppercase tracking-[0.5em]">High-Speed Filtration Engine • Auto-Category Support</p>
+        </footer>
+    </div>
+
+    <script>
+        let storage = {
+            '6155': [],
+            '6156': [],
+            '6157': [],
+            'Others': []
+        };
+
+        function processData() {
+            const input = document.getElementById('mainInput').value;
+            const lines = input.split('\n');
+            
+            // Reset storage
+            storage = { '6155': [], '6156': [], '6157': [], 'Others': [] };
+
+            lines.forEach(line => {
+                const trimmed = line.trim();
+                if (!trimmed) return;
+
+                if (trimmed.startsWith('6155')) {
+                    storage['6155'].push(trimmed);
+                } else if (trimmed.startsWith('6156')) {
+                    storage['6156'].push(trimmed);
+                } else if (trimmed.startsWith('6157')) {
+                    storage['6157'].push(trimmed);
+                } else {
+                    storage['Others'].push(trimmed);
+                }
+            });
+
+            updateUI();
+        }
+
+        function updateUI() {
+            ['6155', '6156', '6157', 'Others'].forEach(id => {
+                const listEl = document.getElementById(`list-${id}`);
+                const countEl = document.getElementById(`count-${id}`);
+                
+                countEl.innerText = storage[id].length;
+                
+                if (storage[id].length > 0) {
+                    listEl.innerHTML = storage[id].map(item => `
+                        <div class="mb-2 pb-1 border-b border-zinc-800/30 truncate hover:text-zinc-200 transition-colors">
+                            ${item}
+                        </div>
+                    `).join('');
+                } else {
+                    listEl.innerHTML = '<div class="h-full flex items-center justify-center opacity-10 uppercase tracking-widest text-[10px] font-bold">No Data</div>';
+                }
+            });
+        }
+
+        async function copyGroup(id) {
+            const text = storage[id].join('\n');
+            if (!text) return;
+
+            try {
+                await navigator.clipboard.writeText(text);
+                const btn = document.getElementById(`btn-${id}`);
+                const originalText = btn.innerText;
+                
+                btn.innerText = 'COPIED!';
+                btn.classList.add('bg-green-600', 'text-white');
+                
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.remove('bg-green-600', 'text-white');
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy!', err);
+            }
+        }
+
+        function clearAll() {
+            document.getElementById('mainInput').value = '';
+            processData();
+        }
+    </script>
+</body>
+</html>
