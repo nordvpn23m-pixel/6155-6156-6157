@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fast ID Separator | Multi-Series</title>
+    <title>ID Separator | Combined & Split</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
@@ -32,16 +32,16 @@
 </head>
 <body class="text-zinc-100 min-h-screen p-4 md:p-8">
 
-    <div class="max-w-[1600px] mx-auto">
+    <div class="max-w-[1400px] mx-auto">
         <!-- Header -->
         <header class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 border-b border-zinc-800 pb-8">
             <div class="flex items-center gap-4">
-                <div class="bg-yellow-500 p-3 rounded-2xl text-black shadow-lg shadow-yellow-500/20">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                <div class="bg-indigo-500 p-3 rounded-2xl text-white shadow-lg shadow-indigo-500/20">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
                 </div>
                 <div>
-                    <h1 class="text-3xl font-black tracking-tighter uppercase italic leading-none">Fast-ID Separator</h1>
-                    <p class="text-[10px] font-bold text-zinc-500 tracking-[0.3em] mt-1 uppercase">Instant Filtration Engine (All-in-One)</p>
+                    <h1 class="text-3xl font-black tracking-tighter uppercase italic leading-none text-white">Combo Separator</h1>
+                    <p class="text-[10px] font-bold text-zinc-500 tracking-[0.3em] mt-1 uppercase">6155-56-57 Combined • 1000 Line Split</p>
                 </div>
             </div>
             
@@ -53,118 +53,81 @@
 
         <!-- Input Area -->
         <div class="relative mb-10 group">
-            <div class="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-3xl blur opacity-25 group-focus-within:opacity-100 transition duration-500"></div>
+            <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-3xl blur opacity-25 group-focus-within:opacity-100 transition duration-500"></div>
             <textarea 
                 id="mainInput"
-                class="relative w-full h-44 bg-zinc-900/90 border border-zinc-800 rounded-2xl p-6 text-sm mono focus:ring-1 focus:ring-yellow-500 outline-none transition-all placeholder:text-zinc-700 resize-none"
-                placeholder="Paste your data here... 6155, 6156, 6157 bad-e onno gulo 'Others' e jabe."
+                class="relative w-full h-44 bg-zinc-900/90 border border-zinc-800 rounded-2xl p-6 text-sm mono focus:ring-1 focus:ring-indigo-500 outline-none transition-all placeholder:text-zinc-700 resize-none"
+                placeholder="Ekhane data paste korun (6155, 6156, 6157 automatic ekshathe hobe)..."
                 oninput="processData()"
             ></textarea>
         </div>
 
-        <!-- Columns Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- 6155 Column -->
-            <div class="flex flex-col bg-zinc-900/50 rounded-[2rem] overflow-hidden card-glow h-[550px]">
-                <div class="px-6 py-5 bg-zinc-800/30 border-b border-zinc-800 flex justify-between items-center">
+        <!-- Main Display Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Combined Column (The 61xx series) -->
+            <div class="lg:col-span-2 flex flex-col bg-zinc-900/50 rounded-[2.5rem] overflow-hidden card-glow min-h-[600px]">
+                <div class="px-8 py-6 bg-zinc-800/30 border-b border-zinc-800 flex justify-between items-center">
                     <div class="flex items-center gap-3">
-                        <span class="h-2.5 w-2.5 rounded-full bg-yellow-500 status-dot"></span>
-                        <span class="font-black text-xl tracking-tighter uppercase italic">ID 6155</span>
+                        <span class="h-3 w-3 rounded-full bg-indigo-500 status-dot"></span>
+                        <h2 class="font-black text-xl tracking-tighter uppercase italic text-white">Combined (6155/56/57)</h2>
                     </div>
-                    <span id="count-6155" class="bg-black px-3 py-1 rounded-full text-xs font-bold text-yellow-500 border border-zinc-800">0</span>
+                    <div class="flex gap-2">
+                        <span id="total-target" class="bg-indigo-500/20 px-4 py-1.5 rounded-full text-xs font-black text-indigo-400 border border-indigo-500/30">Total: 0</span>
+                    </div>
                 </div>
-                <div id="list-6155" class="flex-1 overflow-y-auto p-5 mono text-[11px] leading-relaxed text-zinc-500 scrollbar-hide">
-                    <div class="h-full flex items-center justify-center opacity-10 uppercase text-[10px] font-bold">No Data</div>
-                </div>
-                <button onclick="copyGroup('6155')" id="btn-6155" class="w-full py-5 flex items-center justify-center gap-3 font-black text-xs uppercase tracking-[0.2em] bg-zinc-800 hover:bg-yellow-500 hover:text-black text-zinc-400 transition-all border-t border-zinc-800">
-                    Copy 6155
-                </button>
-            </div>
 
-            <!-- 6156 Column -->
-            <div class="flex flex-col bg-zinc-900/50 rounded-[2rem] overflow-hidden card-glow h-[550px]">
-                <div class="px-6 py-5 bg-zinc-800/30 border-b border-zinc-800 flex justify-between items-center">
-                    <div class="flex items-center gap-3">
-                        <span class="h-2.5 w-2.5 rounded-full bg-emerald-500 status-dot"></span>
-                        <span class="font-black text-xl tracking-tighter uppercase italic">ID 6156</span>
+                <!-- Chunk List Container -->
+                <div id="chunks-container" class="flex-1 p-6 space-y-6 overflow-y-auto scrollbar-hide">
+                    <div class="h-full flex items-center justify-center opacity-10 uppercase text-xs font-bold tracking-[0.3em]">
+                        Data Paste Korun
                     </div>
-                    <span id="count-6156" class="bg-black px-3 py-1 rounded-full text-xs font-bold text-emerald-500 border border-zinc-800">0</span>
                 </div>
-                <div id="list-6156" class="flex-1 overflow-y-auto p-5 mono text-[11px] leading-relaxed text-zinc-500 scrollbar-hide">
-                    <div class="h-full flex items-center justify-center opacity-10 uppercase text-[10px] font-bold">No Data</div>
-                </div>
-                <button onclick="copyGroup('6156')" id="btn-6156" class="w-full py-5 flex items-center justify-center gap-3 font-black text-xs uppercase tracking-[0.2em] bg-zinc-800 hover:bg-emerald-500 hover:text-black text-zinc-400 transition-all border-t border-zinc-800">
-                    Copy 6156
-                </button>
-            </div>
-
-            <!-- 6157 Column -->
-            <div class="flex flex-col bg-zinc-900/50 rounded-[2rem] overflow-hidden card-glow h-[550px]">
-                <div class="px-6 py-5 bg-zinc-800/30 border-b border-zinc-800 flex justify-between items-center">
-                    <div class="flex items-center gap-3">
-                        <span class="h-2.5 w-2.5 rounded-full bg-blue-500 status-dot"></span>
-                        <span class="font-black text-xl tracking-tighter uppercase italic">ID 6157</span>
-                    </div>
-                    <span id="count-6157" class="bg-black px-3 py-1 rounded-full text-xs font-bold text-blue-500 border border-zinc-800">0</span>
-                </div>
-                <div id="list-6157" class="flex-1 overflow-y-auto p-5 mono text-[11px] leading-relaxed text-zinc-500 scrollbar-hide">
-                    <div class="h-full flex items-center justify-center opacity-10 uppercase text-[10px] font-bold">No Data</div>
-                </div>
-                <button onclick="copyGroup('6157')" id="btn-6157" class="w-full py-5 flex items-center justify-center gap-3 font-black text-xs uppercase tracking-[0.2em] bg-zinc-800 hover:bg-blue-500 hover:text-black text-zinc-400 transition-all border-t border-zinc-800">
-                    Copy 6157
-                </button>
             </div>
 
             <!-- Others Column -->
-            <div class="flex flex-col bg-zinc-900/50 rounded-[2rem] overflow-hidden card-glow h-[550px]">
+            <div class="flex flex-col bg-zinc-900/50 rounded-[2.5rem] overflow-hidden card-glow h-[600px]">
                 <div class="px-6 py-5 bg-zinc-800/30 border-b border-zinc-800 flex justify-between items-center">
                     <div class="flex items-center gap-3">
-                        <span class="h-2.5 w-2.5 rounded-full bg-zinc-500 status-dot"></span>
-                        <span class="font-black text-xl tracking-tighter uppercase italic text-zinc-400">Others</span>
+                        <span class="h-2.5 w-2.5 rounded-full bg-zinc-500"></span>
+                        <span class="font-black text-lg tracking-tighter uppercase italic text-zinc-400">Others</span>
                     </div>
-                    <span id="count-Others" class="bg-black px-3 py-1 rounded-full text-xs font-bold text-zinc-400 border border-zinc-800">0</span>
+                    <span id="count-others" class="bg-black px-3 py-1 rounded-full text-xs font-bold text-zinc-500 border border-zinc-800">0</span>
                 </div>
-                <div id="list-Others" class="flex-1 overflow-y-auto p-5 mono text-[11px] leading-relaxed text-zinc-400 scrollbar-hide">
-                    <div class="h-full flex items-center justify-center opacity-10 uppercase text-[10px] font-bold">No Data</div>
+                <div id="list-others" class="flex-1 overflow-y-auto p-5 mono text-[11px] leading-relaxed text-zinc-600 scrollbar-hide">
+                    <div class="h-full flex items-center justify-center opacity-10 uppercase text-[10px] font-bold tracking-widest">Empty</div>
                 </div>
-                <button onclick="copyGroup('Others')" id="btn-Others" class="w-full py-5 flex items-center justify-center gap-3 font-black text-xs uppercase tracking-[0.2em] bg-zinc-800 hover:bg-white hover:text-black text-zinc-500 transition-all border-t border-zinc-800">
+                <button onclick="copyGroup('others')" id="btn-others" class="w-full py-6 flex items-center justify-center gap-3 font-black text-xs uppercase tracking-[0.2em] bg-zinc-800 hover:bg-zinc-700 text-zinc-400 transition-all border-t border-zinc-800">
                     Copy Others
                 </button>
             </div>
+
         </div>
 
         <footer class="mt-16 text-center border-t border-zinc-900 pt-8 pb-12">
-            <p class="text-zinc-800 text-[10px] font-black uppercase tracking-[0.5em]">High-Speed Filtration Engine • Auto-Category Support</p>
+            <p class="text-zinc-800 text-[10px] font-black uppercase tracking-[0.5em]">Combined Filtration • Auto 1000 Split Logic</p>
         </footer>
     </div>
 
     <script>
-        let storage = {
-            '6155': [],
-            '6156': [],
-            '6157': [],
-            'Others': []
-        };
+        let combinedList = [];
+        let othersList = [];
 
         function processData() {
             const input = document.getElementById('mainInput').value;
             const lines = input.split('\n');
             
-            // Reset storage
-            storage = { '6155': [], '6156': [], '6157': [], 'Others': [] };
+            combinedList = [];
+            othersList = [];
 
             lines.forEach(line => {
                 const trimmed = line.trim();
                 if (!trimmed) return;
 
-                if (trimmed.startsWith('6155')) {
-                    storage['6155'].push(trimmed);
-                } else if (trimmed.startsWith('6156')) {
-                    storage['6156'].push(trimmed);
-                } else if (trimmed.startsWith('6157')) {
-                    storage['6157'].push(trimmed);
+                if (trimmed.startsWith('6155') || trimmed.startsWith('6156') || trimmed.startsWith('6157')) {
+                    combinedList.push(trimmed);
                 } else {
-                    storage['Others'].push(trimmed);
+                    othersList.push(trimmed);
                 }
             });
 
@@ -172,33 +135,89 @@
         }
 
         function updateUI() {
-            ['6155', '6156', '6157', 'Others'].forEach(id => {
-                const listEl = document.getElementById(`list-${id}`);
-                const countEl = document.getElementById(`count-${id}`);
+            // Update Others
+            const listOthers = document.getElementById('list-others');
+            const countOthers = document.getElementById('count-others');
+            countOthers.innerText = othersList.length;
+            
+            if (othersList.length > 0) {
+                listOthers.innerHTML = othersList.map(item => `<div class="mb-1 truncate opacity-60 hover:opacity-100">${item}</div>`).join('');
+            } else {
+                listOthers.innerHTML = '<div class="h-full flex items-center justify-center opacity-10 uppercase text-[10px] font-bold tracking-widest">Empty</div>';
+            }
+
+            // Update Combined with 1000 Split logic
+            const chunksContainer = document.getElementById('chunks-container');
+            const totalTarget = document.getElementById('total-target');
+            totalTarget.innerText = `Total: ${combinedList.length}`;
+
+            if (combinedList.length === 0) {
+                chunksContainer.innerHTML = '<div class="h-full flex items-center justify-center opacity-10 uppercase text-xs font-bold tracking-[0.3em]">Data Paste Korun</div>';
+                return;
+            }
+
+            // Chunk logic
+            const chunkSize = 1000;
+            let chunksHtml = '';
+
+            for (let i = 0; i < combinedList.length; i += chunkSize) {
+                const partIndex = Math.floor(i / chunkSize) + 1;
+                const chunk = combinedList.slice(i, i + chunkSize);
                 
-                countEl.innerText = storage[id].length;
-                
-                if (storage[id].length > 0) {
-                    listEl.innerHTML = storage[id].map(item => `
-                        <div class="mb-2 pb-1 border-b border-zinc-800/30 truncate hover:text-zinc-200 transition-colors">
-                            ${item}
+                chunksHtml += `
+                    <div class="bg-zinc-800/20 border border-zinc-800 rounded-2xl p-5 group hover:border-indigo-500/50 transition-all">
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <h3 class="font-black text-indigo-400 text-sm italic uppercase">Part ${partIndex}</h3>
+                                <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Range: ${i + 1} - ${Math.min(i + chunkSize, combinedList.length)}</p>
+                            </div>
+                            <button 
+                                onclick="copyChunk(${i}, ${chunkSize}, this)"
+                                class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-2 rounded-xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-indigo-600/20 transition-all active:scale-95"
+                            >
+                                Copy Part ${partIndex}
+                            </button>
                         </div>
-                    `).join('');
-                } else {
-                    listEl.innerHTML = '<div class="h-full flex items-center justify-center opacity-10 uppercase tracking-widest text-[10px] font-bold">No Data</div>';
-                }
-            });
+                        <div class="h-32 overflow-y-auto bg-black/40 rounded-xl p-3 mono text-[10px] text-zinc-600 border border-zinc-800/50 scrollbar-hide">
+                            ${chunk.map(line => `<div class="truncate opacity-50">${line}</div>`).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            chunksContainer.innerHTML = chunksHtml;
         }
 
-        async function copyGroup(id) {
-            const text = storage[id].join('\n');
+        async function copyChunk(start, size, btn) {
+            const chunk = combinedList.slice(start, start + size);
+            const text = chunk.join('\n');
             if (!text) return;
 
             try {
                 await navigator.clipboard.writeText(text);
-                const btn = document.getElementById(`btn-${id}`);
                 const originalText = btn.innerText;
+                btn.innerText = 'COPIED!';
+                btn.classList.add('bg-green-600');
+                btn.classList.remove('bg-indigo-600');
                 
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.remove('bg-green-600');
+                    btn.classList.add('bg-indigo-600');
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy!', err);
+            }
+        }
+
+        async function copyGroup(type) {
+            const text = othersList.join('\n');
+            if (!text) return;
+
+            try {
+                await navigator.clipboard.writeText(text);
+                const btn = document.getElementById('btn-others');
+                const originalText = btn.innerText;
                 btn.innerText = 'COPIED!';
                 btn.classList.add('bg-green-600', 'text-white');
                 
